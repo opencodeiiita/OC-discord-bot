@@ -6,7 +6,7 @@ A self-hosted bot based on discord.py with many niche features.
 
 
 
-## Dependancies
+## Dependencies
 * [Python v3.7 or higher](https://www.python.org/downloads/)
 * [Pip](https://pip.pypa.io/en/stable/installation/) 
 * [Discord.py](https://pypi.org/project/discord.py/)

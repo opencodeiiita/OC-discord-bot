@@ -15,6 +15,11 @@ async def on_ready():
 async def hi(ctx):
   await ctx.send("Hello!!")
 
+#Github: VBajaj113    Discord: im_nothing#4509
+@bot.command()
+async def VBajaj113(ctx):
+  await ctx.send("You should have tagged instead of issuing a bot command if you wanted to talk to me xD!")
+
 start()
 
 token = ""  #token will be provided with the every claimed issue

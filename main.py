@@ -16,6 +16,17 @@ async def on_ready():
 @bot.command()
 async def hi(ctx):
   await ctx.send("Hello!!")
+  
+ # Discord: Gamma Microwave#4389 GitHub:GammaMicrowave
+@bot.command()
+async def GammaMicrowave(ctx):
+    embed = discord.Embed()
+    embed.set_image(
+        url="https://media.giphy.com/media/EtB1yylKGGAUg/giphy.gif")
+
+    await ctx.send(embed=embed)
+
+
 
 #Github: VBajaj113    Discord: im_nothing#4509
 @bot.command()

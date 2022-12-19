@@ -16,6 +16,11 @@ async def on_ready():
 @bot.command()
 async def hi(ctx):
   await ctx.send("Hello!!")
+
+@bot.command()
+async def tag(ctx, args):
+  command = args[0]
+  
   
  # Discord: Gamma Microwave#4389 GitHub:GammaMicrowave
 @bot.command()

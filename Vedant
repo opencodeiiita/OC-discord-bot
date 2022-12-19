@@ -1,0 +1,13 @@
+async def hi(ctx):
+  await ctx.send("Hola ^..^")
+
+#GithubUsername: vedant-z    
+#DiscordID: Vedant#6268
+
+@bot.command()
+async def vedant-z(ctx):
+  await ctx.send("I have nothing to say. BYE!!")
+
+start()
+
+token = ""  

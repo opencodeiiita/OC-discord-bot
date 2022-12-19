@@ -31,5 +31,6 @@ async def GammaMicrowave(ctx):
 
 start()
 
-token = ""
+# token will be provided with the every claimed issue
+token = "MTA1MTg0ODY4ODMzNjYzODAzMg.GTkomR.x6sgjmFqd8qdUsmLja1Da3CmPvpTNcdedJFDbk"
 bot.run(token)

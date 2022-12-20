@@ -2,6 +2,11 @@ from discord.ext import commands
 import discord
 from server import start
 import json
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -12,9 +17,8 @@ separators = [":", "-", "="]
 
 @bot.event
 async def on_ready():
-    print('ready')
-
-
+  print('ready')
+  
 @bot.command()
 async def hi(ctx):
     await ctx.send("Hello!!")
@@ -40,15 +44,17 @@ async def GammaMicrowave(ctx):
 
     await ctx.send(embed=embed)
 
+# Discord & Github Name: frikinomad
+@bot.command()
+async def frikinomad(ctx):
+  await ctx.send("Hello, I am frikinomad, I like to code and travel")
 
-# Github: VBajaj113    Discord: im_nothing#4509
+#Github: VBajaj113    Discord: im_nothing#4509
 @bot.command()
 async def VBajaj113(ctx):
     await ctx.send("You should have tagged instead of issuing a bot command if you wanted to talk to me xD!")
 
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
-
-
 @bot.command()
 async def MistyRavager(ctx):
     separators = [":", "-", "="]
@@ -79,7 +85,6 @@ async def MistyRavager(ctx):
     await ctx.send(res)
 
 start()
-
 # token will be provided with the every claimed issue
 token = ""
 bot.run(token)

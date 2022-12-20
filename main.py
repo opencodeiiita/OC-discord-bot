@@ -18,7 +18,7 @@ separators = [":", "-", "="]
 @bot.event
 async def on_ready():
   print('ready')
-  
+
 @bot.command()
 async def hi(ctx):
     await ctx.send("Hello!!")
@@ -64,6 +64,11 @@ async def frikinomad(ctx):
 @bot.command()
 async def VBajaj113(ctx):
     await ctx.send("You should have tagged instead of issuing a bot command if you wanted to talk to me xD!")
+
+#Github: SanyamAgrawal07    Discord: Buzzinga#2392
+@bot.command()
+async def SanyamAgrawal07(ctx):
+    await ctx.send("https://tinyurl.com/jn4x5awv")
 
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
 @bot.command()

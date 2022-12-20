@@ -25,10 +25,21 @@ async def hi(ctx):
 
 
 @bot.command()
+async def create(ctx, *args):
+    command = args[0]
+    tempList = list(args)
+    tempList.pop(0)
+    message = " ".join(tempList)
+    dict = {command: message}
+    with open('./data.json', 'r+') as file:
+        tempData = json.load(file)
+    tempData.update(dict)
+    with open('./data.json', 'w') as file:
+        json.dump(tempData, file)
+
+
+@bot.command()
 async def tag(ctx, args):
-    # with open('./data.json', 'r') as file:
-    #     data = json.load(file)
-    # await ctx.send(data['test'])
     with open('./data.json', 'r') as file:
         data = json.load(file)
     await ctx.send(data[args])
@@ -86,5 +97,4 @@ async def MistyRavager(ctx):
 
 start()
 # token will be provided with the every claimed issue
-token = ""
-bot.run(token)
+bot.run(os.getenv("TOKEN")) #Now add the token in a .env file named TOKEN and it will run automatically

@@ -70,6 +70,12 @@ async def VBajaj113(ctx):
 async def SanyamAgrawal07(ctx):
     await ctx.send("https://tinyurl.com/jn4x5awv")
 
+#Github : akshatsgh    Discord: strange#0227
+@bot.command()
+async def akshatsgh(ctx):
+    pic_link = "https://source.unsplash.com/random/300%C3%97300/?coder"
+    await ctx.send(pic_link)
+
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
 @bot.command()
 async def MistyRavager(ctx):

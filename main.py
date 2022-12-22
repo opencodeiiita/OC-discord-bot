@@ -17,17 +17,27 @@ separators = [":", "-", "="]
 
 @bot.event
 async def on_ready():
-  print('ready')
+    print('ready')
+
 
 @bot.event
 async def on_command_error(ctx, error):
-  if isinstance(error, commands.CommandNotFound):
-    await ctx.send('Enter a Valid command, Ciao')
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send('Enter a Valid command, Ciao')
 
 
 @bot.command()
 async def hi(ctx):
     await ctx.send("Hello!!")
+
+
+@bot.command()
+async def delete(ctx, args):
+    with open('./data.json', 'r') as file:
+        tempData = json.load(file)
+    del tempData[args]
+    with open('./data.json', 'w') as file:
+        json.dump(tempData, file)
 
 
 @bot.command()
@@ -62,32 +72,44 @@ async def GammaMicrowave(ctx):
     await ctx.send(embed=embed)
 
 # Discord & Github Name: frikinomad
+
+
 @bot.command()
 async def frikinomad(ctx):
-  await ctx.send("Hello, I am frikinomad, I like to code and travel")
+    await ctx.send("Hello, I am frikinomad, I like to code and travel")
 
-#Github: VBajaj113    Discord: im_nothing#4509
+# Github: VBajaj113    Discord: im_nothing#4509
+
+
 @bot.command()
 async def VBajaj113(ctx):
     await ctx.send("You should have tagged instead of issuing a bot command if you wanted to talk to me xD!")
 
-#Github: SanyamAgrawal07    Discord: Buzzinga#2392
+# Github: SanyamAgrawal07    Discord: Buzzinga#2392
+
+
 @bot.command()
 async def SanyamAgrawal07(ctx):
     await ctx.send("https://tinyurl.com/jn4x5awv")
 
-#Github : akshatsgh    Discord: strange#0227
+# Github : akshatsgh    Discord: strange#0227
+
+
 @bot.command()
 async def akshatsgh(ctx):
     pic_link = "https://source.unsplash.com/random/300%C3%97300/?coder"
     await ctx.send(pic_link)
 
-#Github : RibhavBansal    Discord: ThunderBeast#1696
+# Github : RibhavBansal    Discord: ThunderBeast#1696
+
+
 @bot.command()
 async def RibhavBansal(ctx):
-  await ctx.send("Hey, I am Ribhav, I like to develop my skills")
+    await ctx.send("Hey, I am Ribhav, I like to develop my skills")
 
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
+
+
 @bot.command()
 async def MistyRavager(ctx):
     separators = [":", "-", "="]
@@ -119,4 +141,5 @@ async def MistyRavager(ctx):
 
 start()
 # token will be provided with the every claimed issue
-bot.run(os.getenv("TOKEN")) #Now add the token in a .env file named TOKEN and it will run automatically
+# Now add the token in a .env file named TOKEN and it will run automatically
+bot.run(os.getenv("TOKEN"))

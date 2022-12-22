@@ -82,6 +82,11 @@ async def akshatsgh(ctx):
     pic_link = "https://source.unsplash.com/random/300%C3%97300/?coder"
     await ctx.send(pic_link)
 
+#Github : RibhavBansal    Discord: ThunderBeast#1696
+@bot.command()
+async def RibhavBansal(ctx):
+  await ctx.send("Hey, I am Ribhav, I like to develop my skills")
+
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
 @bot.command()
 async def MistyRavager(ctx):

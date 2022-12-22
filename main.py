@@ -19,6 +19,12 @@ separators = [":", "-", "="]
 async def on_ready():
   print('ready')
 
+@bot.event
+async def on_command_error(ctx, error):
+  if isinstance(error, commands.CommandNotFound):
+    await ctx.send('Enter a Valid command, Ciao')
+
+
 @bot.command()
 async def hi(ctx):
     await ctx.send("Hello!!")

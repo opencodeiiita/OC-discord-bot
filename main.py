@@ -33,6 +33,20 @@ async def hi(ctx):
 
 
 @bot.command()
+async def avatar(ctx, *, member: discord.Member = None):
+    if member == None:
+        embed = discord.Embed(description='Can you please specify a User dum dum!',
+                              color=discord.Color.red())
+        await ctx.reply(embed=embed)
+    else:
+        Avatar = member.avatar
+        embed = discord.Embed(
+            title=(f'Avatar of {member.name}:'), colour=0x109319)
+        embed.set_image(url=f'{Avatar}')
+        await ctx.reply(embed=embed)
+
+
+@bot.command()
 async def weather(ctx, args):
     res = requests.get(
         f'https://api.openweathermap.org/data/2.5/weather?q={args}&appid={os.getenv("API_KEY")}')
@@ -67,12 +81,28 @@ async def weather(ctx, args):
 
 
 @bot.command()
-async def delete(ctx, args):
+async def remove(ctx, args):
     with open('./data.json', 'r') as file:
         tempData = json.load(file)
     del tempData[args]
     with open('./data.json', 'w') as file:
         json.dump(tempData, file)
+    await ctx.send("The command has been successfully removed. Maybe don't be such a crybaby next time and just let the command live!")
+
+
+@bot.command()
+async def edit(ctx, *args):
+    command = args[0]
+    tempList = list(args)
+    tempList.pop(0)
+    message = " ".join(tempList)
+    dict = {command: message}
+    with open('./data.json', 'r') as file:
+        tempData = json.load(file)
+    tempData.update(dict)
+    with open('./data.json', 'w') as file:
+        json.dump(tempData, file)
+    await ctx.send("Your command has been successfully edited! Maybe from next time think before making a command, r word...")
 
 
 @bot.command()
@@ -87,6 +117,7 @@ async def create(ctx, *args):
     tempData.update(dict)
     with open('./data.json', 'w') as file:
         json.dump(tempData, file)
+    await ctx.send("The command has been successfully created! You can write +tag [command] to check if it is working.")
 
 
 @bot.command()

@@ -174,6 +174,24 @@ async def MistyRavager(ctx):
     await ctx.send("the following people have made a personal command:")
     await ctx.send(res)
 
+
+@bot.command()
+async def birthdays(ctx):
+    res = requests.get(
+        f'https://gpl-at-iiita.anurag10jain.repl.co/')
+    all_b = res.json()
+
+    embed = discord.Embed(title="Birthdays",
+                          description="All Birthdays", color=0x109319)
+
+    for each in all_b:
+        for key in each:
+            embed.add_field(name=key, value=each[key], inline=True)
+        
+    await ctx.send(embed=embed)
+
+
+
 start()
 # token will be provided with the every claimed issue
 # Now add the token in a .env file named TOKEN and it will run automatically

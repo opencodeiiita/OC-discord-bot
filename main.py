@@ -4,6 +4,7 @@ from server import start
 import json
 from dotenv import load_dotenv
 import os
+import requests
 
 load_dotenv()
 
@@ -29,6 +30,40 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def hi(ctx):
     await ctx.send("Hello!!")
+
+
+@bot.command()
+async def weather(ctx, args):
+    res = requests.get(
+        f'https://api.openweathermap.org/data/2.5/weather?q={args}&appid={os.getenv("API_KEY")}')
+    tempData = res.json()
+    weather = tempData['weather'][0]
+    file = discord.File(
+        f'icons/weather/{weather["icon"]}.png', filename="image.png")
+
+    embed = discord.Embed(title="Weather Report", url="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley",
+                          description=f'{tempData["name"]}', color=0x109319)
+
+    embed.set_thumbnail(url="attachment://image.png")
+
+    embed.add_field(name=f'{weather["main"]}',
+                    value=f'{weather["description"]}', inline=False)
+
+    embed.add_field(name='Temperature:',
+                    value=f'{round(tempData["main"]["temp"]-273.14,2)}°C', inline=True)
+    embed.add_field(name="Feels Like:",
+                    value=f'{round(tempData["main"]["feels_like"]-273.14,2)}°C', inline=True)
+    embed.add_field(name="Temperature Range:",
+                    value=f'{round(tempData["main"]["temp_min"]-273.14,2)}°C-{round(tempData["main"]["temp_max"]-273.14,2)}°C', inline=False)
+    embed.add_field(name="Pressure",
+                    value=f'{tempData["main"]["pressure"]} N/m2', inline=True)
+    embed.add_field(name="Humidity:",
+                    value=f'{tempData["main"]["humidity"]} g/kg', inline=True)
+    embed.add_field(name="Visibility:",
+                    value=f'{tempData["visibility"]}m', inline=True)
+    embed.set_footer(text="https://openweathermap.org/current")
+
+    await ctx.send(file=file, embed=embed)
 
 
 @bot.command()

@@ -47,6 +47,37 @@ async def avatar(ctx, *, member: discord.Member = None):
 
 
 @bot.command()
+async def lb(ctx):
+    tempData = requests.get(
+        f'https://leaderboard-response-cache.anurag10jain.repl.co/get-all-data')
+    tempData = tempData.json()
+
+    userArray = list()
+    pointsArray = list()
+    imageArray = list()
+    for i in range(10):
+        tempJson = tempData["data"][i]
+        userArray.append(tempJson["username"])
+        pointsArray.append(tempJson["total_points"])
+        imageArray.append(tempJson["image"])
+
+    embed = discord.Embed(title="LeaderBoard", url="https://manas2403.github.io/Opencode-Leaderboard/",
+                          description="Contributers in OpenCode 22", color=0x00FFFF)
+
+    embed.add_field(
+        name=chr(173), value="```--------Top 10 Contibuters--------```", inline=False)
+
+    for i in range(10):
+        embed.add_field(
+            name=f'***Rank #{i+1}***', value=f'*{userArray[i]}*  ➤ `{pointsArray[i]}`', inline=False)
+
+    embed.set_thumbnail(
+        url="https://cdn.discordapp.com/icons/885149696249708635/6f1402c1fbaae5dbca952b011cb7a504.png")
+
+    await ctx.send(embed=embed)
+
+
+@bot.command()
 async def weather(ctx, args):
     res = requests.get(
         f'https://api.openweathermap.org/data/2.5/weather?q={args}&appid={os.getenv("API_KEY")}')
@@ -218,8 +249,6 @@ async def birthdays(ctx):
     for each in all_b:
         for key in each:
             embed.add_field(name=key, value=each[key], inline=True)
-        
-    await ctx.send(embed=embed)
 
 @bot.command()
 async def points(ctx,*args):

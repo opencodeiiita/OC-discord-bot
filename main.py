@@ -221,7 +221,30 @@ async def birthdays(ctx):
         
     await ctx.send(embed=embed)
 
-
+@bot.command()
+async def points(ctx,*args):
+    username = args[0]
+    found = 0
+    points = 0
+    res = requests.get("https://leaderboard-response-cache.anurag10jain.repl.co/get-all-data")
+    data = res.json()
+    githubID = ""
+    list_of_participants = data["data"]
+    for i in list_of_participants:
+        if i["username"] == username:
+            found = 1
+            points = i['total_points']
+            githubID = i['image'].rstrip(".png")
+            break
+    embed = discord.Embed(description=f"Contribution Details of {username}:")  
+    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/885149696249708635/6f1402c1fbaae5dbca952b011cb7a504.webp?size=128")
+    if found : 
+        embed.add_field(name="Total Points",value=points,inline=True)   
+        embed.add_field(name="Github ID",value=githubID,inline=True)   
+    else :
+        embed.add_field(name="Enter correct username dummy",value=" cuz user not found")
+        
+    await ctx.send(embed=embed)
 
 start()
 # token will be provided with the every claimed issue

@@ -62,7 +62,7 @@ async def lb(ctx):
         imageArray.append(tempJson["image"])
 
     embed = discord.Embed(title="LeaderBoard", url="https://manas2403.github.io/Opencode-Leaderboard/",
-                          description="bitchless people", color=0x00FFFF)
+                          description="Contributers in OpenCode 22", color=0x00FFFF)
 
     embed.add_field(
         name=chr(173), value="```--------Top 10 Contibuters--------```", inline=False)

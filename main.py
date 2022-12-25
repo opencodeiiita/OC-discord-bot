@@ -47,6 +47,37 @@ async def avatar(ctx, *, member: discord.Member = None):
 
 
 @bot.command()
+async def lb(ctx):
+    tempData = requests.get(
+        f'https://leaderboard-response-cache.anurag10jain.repl.co/get-all-data')
+    tempData = tempData.json()
+
+    userArray = list()
+    pointsArray = list()
+    imageArray = list()
+    for i in range(10):
+        tempJson = tempData["data"][i]
+        userArray.append(tempJson["username"])
+        pointsArray.append(tempJson["total_points"])
+        imageArray.append(tempJson["image"])
+
+    embed = discord.Embed(title="LeaderBoard", url="https://manas2403.github.io/Opencode-Leaderboard/",
+                          description="Contributers in OpenCode 22", color=0x00FFFF)
+
+    embed.add_field(
+        name=chr(173), value="```--------Top 10 Contibuters--------```", inline=False)
+
+    for i in range(10):
+        embed.add_field(
+            name=f'***Rank #{i+1}***', value=f'*{userArray[i]}*  ➤ `{pointsArray[i]}`', inline=False)
+
+    embed.set_thumbnail(
+        url="https://cdn.discordapp.com/icons/885149696249708635/6f1402c1fbaae5dbca952b011cb7a504.png")
+
+    await ctx.send(embed=embed)
+
+
+@bot.command()
 async def weather(ctx, args):
     res = requests.get(
         f'https://api.openweathermap.org/data/2.5/weather?q={args}&appid={os.getenv("API_KEY")}')
@@ -218,10 +249,31 @@ async def birthdays(ctx):
     for each in all_b:
         for key in each:
             embed.add_field(name=key, value=each[key], inline=True)
+
+@bot.command()
+async def points(ctx,*args):
+    username = args[0]
+    found = 0
+    points = 0
+    res = requests.get("https://leaderboard-response-cache.anurag10jain.repl.co/get-all-data")
+    data = res.json()
+    githubID = ""
+    list_of_participants = data["data"]
+    for i in list_of_participants:
+        if i["username"] == username:
+            found = 1
+            points = i['total_points']
+            githubID = i['image'].rstrip(".png")
+            break
+    embed = discord.Embed(description=f"Contribution Details of {username}:")  
+    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/885149696249708635/6f1402c1fbaae5dbca952b011cb7a504.webp?size=128")
+    if found : 
+        embed.add_field(name="Total Points",value=points,inline=True)   
+        embed.add_field(name="Github ID",value=githubID,inline=True)   
+    else :
+        embed.add_field(name="Enter correct username dummy",value=" cuz user not found")
         
     await ctx.send(embed=embed)
-
-
 
 start()
 # token will be provided with the every claimed issue

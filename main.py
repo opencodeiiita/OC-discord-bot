@@ -5,6 +5,7 @@ import json
 from dotenv import load_dotenv
 import os
 import requests
+import random
 
 load_dotenv()
 
@@ -274,6 +275,25 @@ async def points(ctx,*args):
         embed.add_field(name="Enter correct username dummy",value=" cuz user not found")
         
     await ctx.send(embed=embed)
+
+@bot.command()
+async def meme(ctx,subreddit=random.choice(["memes","AdviceAnimals","ComedyCemetery","dankmemes"])):
+    limit_of_memes = 100
+    res = requests.get(f"https://www.reddit.com/r/{subreddit}/top.json?limit={limit_of_memes}&t=year",headers={'User-agent': 'yourbot'})
+    meme_num = random.randint(0,99)
+    embed = discord.Embed(title="")
+    embed.set_author(name=f"Here is a meme for you from {subreddit} subreddit!",icon_url="https://cdn.discordapp.com/icons/885149696249708635/6f1402c1fbaae5dbca952b011cb7a504.webp?size=128")
+    
+    if res.status_code!=404 and res.json()['data']['children']!=[]:
+        image = res.json()['data']['children'][meme_num]['data']['url']
+        embed.set_image(url=image)
+        string = 'https://reddit.com'+res.json()['data']['children'][meme_num]['data']['permalink']
+        embed.add_field(name="Link:",value=string,inline=True)
+    else:
+        embed.set_image(url="https://media.tenor.com/QSFMj0VddAQAAAAM/hold-on-wait-a-minute.gif")
+
+    await ctx.send(embed=embed)
+
 
 start()
 # token will be provided with the every claimed issue

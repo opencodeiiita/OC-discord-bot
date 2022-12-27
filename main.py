@@ -301,18 +301,16 @@ async def pokemon(ctx):
     data = res.json()
     name = data['name']
     generation = data['generation']['name']
-    desc = {}
+    desc = ''
     for entry in data['flavor_text_entries']:
         if entry['language']['name'] == "en":
-            desc[entry['version']['name']]=entry['flavor_text'].replace('\n',' ')
+            desc=entry['flavor_text'].replace('\n',' ')
     embed = discord.Embed(title="Pokemon details")
-    embed.add_field(name="Name",value=name)
-    embed.add_field(name="Pokedex entry",value=index)
-    embed.add_field(name="Generation name",value=generation)
-    embed.add_field(name=chr(173), value="```----Pokedex Entries----```", inline=False)
+    embed.add_field(name="Name",value=name,inline=False)
+    embed.add_field(name="Pokedex ID",value=index,inline=False)
+    embed.add_field(name="Generation name",value=generation,inline=False)
     embed.set_image(url=f"https://img.pokemondb.net/sprites/x-y/normal/{name}.png")
-    for i,j in desc.items():
-        embed.add_field(name=f"{i}",value=f"{j}")
+    embed.set_footer(text=f"Pokedex Entry: \n{desc}")
 
     await ctx.send(embed=embed)
 

@@ -294,6 +294,28 @@ async def meme(ctx,subreddit=random.choice(["memes","AdviceAnimals","ComedyCemet
 
     await ctx.send(embed=embed)
 
+@bot.command()
+async def pokemon(ctx):
+    index = random.randint(1,500)
+    res = requests.get(f"https://pokeapi.co/api/v2/pokemon-species/{index}/")
+    data = res.json()
+    name = data['name']
+    generation = data['generation']['name']
+    desc = {}
+    for entry in data['flavor_text_entries']:
+        if entry['language']['name'] == "en":
+            desc[entry['version']['name']]=entry['flavor_text'].replace('\n',' ')
+    embed = discord.Embed(title="Pokemon details")
+    embed.add_field(name="Name",value=name)
+    embed.add_field(name="Pokedex entry",value=index)
+    embed.add_field(name="Generation name",value=generation)
+    embed.add_field(name=chr(173), value="```----Pokedex Entries----```", inline=False)
+    embed.set_image(url=f"https://img.pokemondb.net/sprites/x-y/normal/{name}.png")
+    for i,j in desc.items():
+        embed.add_field(name=f"{i}",value=f"{j}")
+
+    await ctx.send(embed=embed)
+
 
 start()
 # token will be provided with the every claimed issue

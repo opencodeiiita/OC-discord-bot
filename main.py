@@ -190,6 +190,13 @@ async def VBajaj113(ctx):
 async def SanyamAgrawal07(ctx):
     await ctx.send("https://tinyurl.com/jn4x5awv")
 
+    # Github: sushantk1274   Discord: sushant#3233
+
+@bot.command()
+async def sushantk1274(ctx):
+    await ctx.send("Hey,i am sushant contributing in ocbot folder and i aam your bot ")
+
+
 # Github : akshatsgh    Discord: strange#0227
 
 
@@ -206,6 +213,8 @@ async def RibhavBansal(ctx):
     await ctx.send("Hey, I am Ribhav, I like to develop my skills")
 
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
+
+
 
 
 @bot.command()

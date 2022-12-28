@@ -194,7 +194,7 @@ async def SanyamAgrawal07(ctx):
 
 @bot.command()
 async def sushantk1274(ctx):
-    await ctx.send("Hey,i am sushant contributing in ocbot folder and i aam your bot ")
+    await ctx.send("Hey,i am sushant contributing in ocbot folder and i am your bot ")
 
 
 # Github : akshatsgh    Discord: strange#0227

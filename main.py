@@ -345,8 +345,14 @@ async def pokemon(ctx):
     embed.set_footer(text=f"Pokedex Entry: \n{desc}")
 
     await ctx.send(embed=embed)
+    
+    
+ # Github : JahnaviGadde    Discord: JahnaviGadde#0818
 
-
+@bot.command()
+async def JahnaviGadde(ctx):
+    await ctx.send("Hello ! I am Jahnavi, This is my first bot command !!!")   
+   
 start()
 # token will be provided with the every claimed issue
 # Now add the token in a .env file named TOKEN and it will run automatically

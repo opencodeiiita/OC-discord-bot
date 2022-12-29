@@ -5,6 +5,7 @@ import json
 from dotenv import load_dotenv
 import os
 import requests
+import random
 
 load_dotenv()
 
@@ -113,47 +114,61 @@ async def weather(ctx, args):
 
 @bot.command()
 async def remove(ctx, args):
-    with open('./data.json', 'r') as file:
-        tempData = json.load(file)
-    del tempData[args]
-    with open('./data.json', 'w') as file:
-        json.dump(tempData, file)
-    await ctx.send("The command has been successfully removed. Maybe don't be such a crybaby next time and just let the command live!")
+    serverId = ctx.message.guild.id
+    if (os.path.exists(f'./tags/{serverId}.json')):
+        with open(f'./tags/{serverId}.json', 'r') as file:
+            tempData = json.load(file)
+        del tempData[args]
+        with open(f'./tags/{serverId}.json', 'w') as file:
+            json.dump(tempData, file)
+        await ctx.send("The command has been successfully removed. Maybe don't be such a crybaby next time and just let the command live!")
+    else:
+        await ctx.send("Bruh, first make a command then try to delete it.....")
 
 
 @bot.command()
 async def edit(ctx, *args):
+    serverId = ctx.message.guild.id
     command = args[0]
     tempList = list(args)
     tempList.pop(0)
     message = " ".join(tempList)
     dict = {command: message}
-    with open('./data.json', 'r') as file:
-        tempData = json.load(file)
-    tempData.update(dict)
-    with open('./data.json', 'w') as file:
-        json.dump(tempData, file)
-    await ctx.send("Your command has been successfully edited! Maybe from next time think before making a command, r word...")
+    if (os.path.exists(f'./tags/{serverId}.json')):
+        with open(f'./tags/{serverId}.json', 'r') as file:
+            tempData = json.load(file)
+        tempData.update(dict)
+        with open(f'./tags/{serverId}.json', 'w') as file:
+            json.dump(tempData, file)
+        await ctx.send("Your command has been successfully edited! Maybe from next time think before making a command, r word...")
+    else:
+        await ctx.send("Instead of editing command if you tried to make one first it would be fruitful for both of us, don't you think?")
 
 
 @bot.command()
 async def create(ctx, *args):
+    serverId = ctx.message.guild.id
     command = args[0]
     tempList = list(args)
     tempList.pop(0)
     message = " ".join(tempList)
     dict = {command: message}
-    with open('./data.json', 'r+') as file:
-        tempData = json.load(file)
-    tempData.update(dict)
-    with open('./data.json', 'w') as file:
-        json.dump(tempData, file)
+    if os.path.exists(f'./tags/{serverId}.json'):
+        with open(f'./tags/{serverId}.json', 'r') as file:
+            tempData = json.load(file)
+        tempData.update(dict)
+        with open(f'./tags/{serverId}.json', 'w') as file:
+            json.dump(tempData, file)
+    else:
+        with open(f'./tags/{serverId}.json', 'w') as file:
+            json.dump(dict, file)
     await ctx.send("The command has been successfully created! You can write +tag [command] to check if it is working.")
 
 
 @bot.command()
 async def tag(ctx, args):
-    with open('./data.json', 'r') as file:
+    serverId = ctx.message.guild.id
+    with open(f'./tags/{serverId}.json', 'r') as file:
         data = json.load(file)
     await ctx.send(data[args])
 
@@ -189,6 +204,13 @@ async def VBajaj113(ctx):
 async def SanyamAgrawal07(ctx):
     await ctx.send("https://tinyurl.com/jn4x5awv")
 
+    # Github: sushantk1274   Discord: sushant#3233
+
+@bot.command()
+async def sushantk1274(ctx):
+    await ctx.send("Hey,i am sushant contributing in ocbot folder and i am your bot ")
+
+
 # Github : akshatsgh    Discord: strange#0227
 
 
@@ -205,6 +227,8 @@ async def RibhavBansal(ctx):
     await ctx.send("Hey, I am Ribhav, I like to develop my skills")
 
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
+
+
 
 
 @bot.command()
@@ -250,12 +274,14 @@ async def birthdays(ctx):
         for key in each:
             embed.add_field(name=key, value=each[key], inline=True)
 
+
 @bot.command()
-async def points(ctx,*args):
+async def points(ctx, *args):
     username = args[0]
     found = 0
     points = 0
-    res = requests.get("https://leaderboard-response-cache.anurag10jain.repl.co/get-all-data")
+    res = requests.get(
+        "https://leaderboard-response-cache.anurag10jain.repl.co/get-all-data")
     data = res.json()
     githubID = ""
     list_of_participants = data["data"]
@@ -265,15 +291,61 @@ async def points(ctx,*args):
             points = i['total_points']
             githubID = i['image'].rstrip(".png")
             break
-    embed = discord.Embed(description=f"Contribution Details of {username}:")  
-    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/885149696249708635/6f1402c1fbaae5dbca952b011cb7a504.webp?size=128")
-    if found : 
-        embed.add_field(name="Total Points",value=points,inline=True)   
-        embed.add_field(name="Github ID",value=githubID,inline=True)   
-    else :
-        embed.add_field(name="Enter correct username dummy",value=" cuz user not found")
-        
+    embed = discord.Embed(description=f"Contribution Details of {username}:")
+    embed.set_thumbnail(
+        url="https://cdn.discordapp.com/icons/885149696249708635/6f1402c1fbaae5dbca952b011cb7a504.webp?size=128")
+    if found:
+        embed.add_field(name="Total Points", value=points, inline=True)
+        embed.add_field(name="Github ID", value=githubID, inline=True)
+    else:
+        embed.add_field(name="Enter correct username dummy",
+                        value=" cuz user not found")
+
     await ctx.send(embed=embed)
+
+
+@bot.command()
+async def meme(ctx, subreddit=random.choice(["memes", "AdviceAnimals", "ComedyCemetery", "dankmemes"])):
+    limit_of_memes = 100
+    res = requests.get(
+        f"https://www.reddit.com/r/{subreddit}/top.json?limit={limit_of_memes}&t=year", headers={'User-agent': 'yourbot'})
+    meme_num = random.randint(0, 99)
+    embed = discord.Embed(title="")
+    embed.set_author(name=f"Here is a meme for you from {subreddit} subreddit!",
+                     icon_url="https://cdn.discordapp.com/icons/885149696249708635/6f1402c1fbaae5dbca952b011cb7a504.webp?size=128")
+
+    if res.status_code != 404 and res.json()['data']['children'] != []:
+        image = res.json()['data']['children'][meme_num]['data']['url']
+        embed.set_image(url=image)
+        string = 'https://reddit.com' + \
+            res.json()['data']['children'][meme_num]['data']['permalink']
+        embed.add_field(name="Link:", value=string, inline=True)
+    else:
+        embed.set_image(
+            url="https://media.tenor.com/QSFMj0VddAQAAAAM/hold-on-wait-a-minute.gif")
+
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def pokemon(ctx):
+    index = random.randint(1,500)
+    res = requests.get(f"https://pokeapi.co/api/v2/pokemon-species/{index}/")
+    data = res.json()
+    name = data['name']
+    generation = data['generation']['name']
+    desc = ''
+    for entry in data['flavor_text_entries']:
+        if entry['language']['name'] == "en":
+            desc=entry['flavor_text'].replace('\n',' ')
+    embed = discord.Embed(title="Pokemon details")
+    embed.add_field(name="Name",value=name,inline=False)
+    embed.add_field(name="Pokedex ID",value=index,inline=False)
+    embed.add_field(name="Generation name",value=generation,inline=False)
+    embed.set_image(url=f"https://img.pokemondb.net/sprites/x-y/normal/{name}.png")
+    embed.set_footer(text=f"Pokedex Entry: \n{desc}")
+
+    await ctx.send(embed=embed)
+
 
 start()
 # token will be provided with the every claimed issue

@@ -183,6 +183,16 @@ async def GammaMicrowave(ctx):
 
     await ctx.send(embed=embed)
 
+    # Github: aasthaaaa7   Discord: Asta.#4094
+
+@bot.command()
+async def aasthaaaa7(ctx):
+    embed = discord.Embed()
+    embed.set_image(
+        url="https://media.discordapp.net/attachments/763053037332725790/903827271473844285/image0-15-3.gif")
+
+    await ctx.send(embed=embed)
+
 # Discord & Github Name: frikinomad
 
 
@@ -209,6 +219,7 @@ async def SanyamAgrawal07(ctx):
 @bot.command()
 async def sushantk1274(ctx):
     await ctx.send("Hey,i am sushant contributing in ocbot folder and i am your bot ")
+
 
 
 # Github : akshatsgh    Discord: strange#0227

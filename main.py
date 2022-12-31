@@ -226,6 +226,13 @@ async def akshatsgh(ctx):
 async def RibhavBansal(ctx):
     await ctx.send("Hey, I am Ribhav, I like to develop my skills")
 
+ 
+ #Github : Koshal7      Discord : Sick Duck#8496
+
+@bot.command()
+async def Koshal7(ctx):
+    await ctx.send("London Me Taxi Chalaega?")
+
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
 
 

@@ -204,6 +204,13 @@ async def VBajaj113(ctx):
 async def SanyamAgrawal07(ctx):
     await ctx.send("https://tinyurl.com/jn4x5awv")
 
+    # Github: sushantk1274   Discord: sushant#3233
+
+@bot.command()
+async def sushantk1274(ctx):
+    await ctx.send("Hey,i am sushant contributing in ocbot folder and i am your bot ")
+
+
 # Github : akshatsgh    Discord: strange#0227
 
 
@@ -219,7 +226,16 @@ async def akshatsgh(ctx):
 async def RibhavBansal(ctx):
     await ctx.send("Hey, I am Ribhav, I like to develop my skills")
 
+ 
+ #Github : Koshal7      Discord : Sick Duck#8496
+
+@bot.command()
+async def Koshal7(ctx):
+    await ctx.send("London Me Taxi Chalaega?")
+
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
+
+
 
 
 @bot.command()
@@ -336,8 +352,14 @@ async def pokemon(ctx):
     embed.set_footer(text=f"Pokedex Entry: \n{desc}")
 
     await ctx.send(embed=embed)
+    
+    
+ # Github : JahnaviGadde    Discord: JahnaviGadde#0818
 
-
+@bot.command()
+async def JahnaviGadde(ctx):
+    await ctx.send("Hello ! I am Jahnavi, This is my first bot command !!!")   
+   
 start()
 # token will be provided with the every claimed issue
 # Now add the token in a .env file named TOKEN and it will run automatically

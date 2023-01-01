@@ -172,10 +172,26 @@ async def tag(ctx, args):
         data = json.load(file)
     await ctx.send(data[args])
 
+
+@bot.command()
+async def tags(ctx):
+    serverId = ctx.message.guild.id
+    embed = discord.Embed(color=0x109319)
+    tagsString = ""
+    with open(f'./tags/{serverId}.json', 'r') as file:
+        data = json.load(file)
+    index = 1
+    for key,value in data.items():
+        tagsString += f'{index}. {key+chr(10)}'
+        index += 1
+    embed.add_field(name="The tags made in this server are given below:",
+                    value=tagsString, inline=False)
+    await ctx.send(embed=embed)
+
  # Discord: Gamma Microwave#4389 GitHub:GammaMicrowave
 
 
-@bot.command()
+@ bot.command()
 async def GammaMicrowave(ctx):
     embed = discord.Embed()
     embed.set_image(
@@ -186,27 +202,28 @@ async def GammaMicrowave(ctx):
 # Discord & Github Name: frikinomad
 
 
-@bot.command()
+@ bot.command()
 async def frikinomad(ctx):
     await ctx.send("Hello, I am frikinomad, I like to code and travel")
 
 # Github: VBajaj113    Discord: im_nothing#4509
 
 
-@bot.command()
+@ bot.command()
 async def VBajaj113(ctx):
     await ctx.send("You should have tagged instead of issuing a bot command if you wanted to talk to me xD!")
 
 # Github: SanyamAgrawal07    Discord: Buzzinga#2392
 
 
-@bot.command()
+@ bot.command()
 async def SanyamAgrawal07(ctx):
     await ctx.send("https://tinyurl.com/jn4x5awv")
 
     # Github: sushantk1274   Discord: sushant#3233
 
-@bot.command()
+
+@ bot.command()
 async def sushantk1274(ctx):
     await ctx.send("Hey,i am sushant contributing in ocbot folder and i am your bot ")
 
@@ -214,7 +231,7 @@ async def sushantk1274(ctx):
 # Github : akshatsgh    Discord: strange#0227
 
 
-@bot.command()
+@ bot.command()
 async def akshatsgh(ctx):
     pic_link = "https://source.unsplash.com/random/300%C3%97300/?coder"
     await ctx.send(pic_link)
@@ -222,7 +239,7 @@ async def akshatsgh(ctx):
 # Github : RibhavBansal    Discord: ThunderBeast#1696
 
 
-@bot.command()
+@ bot.command()
 async def RibhavBansal(ctx):
     await ctx.send("Hey, I am Ribhav, I like to develop my skills")
 
@@ -236,9 +253,7 @@ async def Koshal7(ctx):
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
 
 
-
-
-@bot.command()
+@ bot.command()
 async def MistyRavager(ctx):
     separators = [":", "-", "="]
     discordIDs = []
@@ -268,7 +283,7 @@ async def MistyRavager(ctx):
     await ctx.send(res)
 
 
-@bot.command()
+@ bot.command()
 async def birthdays(ctx):
     res = requests.get(
         f'https://gpl-at-iiita.anurag10jain.repl.co/')
@@ -282,7 +297,7 @@ async def birthdays(ctx):
             embed.add_field(name=key, value=each[key], inline=True)
 
 
-@bot.command()
+@ bot.command()
 async def points(ctx, *args):
     username = args[0]
     found = 0
@@ -311,7 +326,7 @@ async def points(ctx, *args):
     await ctx.send(embed=embed)
 
 
-@bot.command()
+@ bot.command()
 async def meme(ctx, subreddit=random.choice(["memes", "AdviceAnimals", "ComedyCemetery", "dankmemes"])):
     limit_of_memes = 100
     res = requests.get(
@@ -333,9 +348,10 @@ async def meme(ctx, subreddit=random.choice(["memes", "AdviceAnimals", "ComedyCe
 
     await ctx.send(embed=embed)
 
-@bot.command()
+
+@ bot.command()
 async def pokemon(ctx):
-    index = random.randint(1,500)
+    index = random.randint(1, 500)
     res = requests.get(f"https://pokeapi.co/api/v2/pokemon-species/{index}/")
     data = res.json()
     name = data['name']
@@ -343,23 +359,24 @@ async def pokemon(ctx):
     desc = ''
     for entry in data['flavor_text_entries']:
         if entry['language']['name'] == "en":
-            desc=entry['flavor_text'].replace('\n',' ')
+            desc = entry['flavor_text'].replace('\n', ' ')
     embed = discord.Embed(title="Pokemon details")
-    embed.add_field(name="Name",value=name,inline=False)
-    embed.add_field(name="Pokedex ID",value=index,inline=False)
-    embed.add_field(name="Generation name",value=generation,inline=False)
-    embed.set_image(url=f"https://img.pokemondb.net/sprites/x-y/normal/{name}.png")
+    embed.add_field(name="Name", value=name, inline=False)
+    embed.add_field(name="Pokedex ID", value=index, inline=False)
+    embed.add_field(name="Generation name", value=generation, inline=False)
+    embed.set_image(
+        url=f"https://img.pokemondb.net/sprites/x-y/normal/{name}.png")
     embed.set_footer(text=f"Pokedex Entry: \n{desc}")
 
     await ctx.send(embed=embed)
-    
-    
+
  # Github : JahnaviGadde    Discord: JahnaviGadde#0818
 
-@bot.command()
+
+@ bot.command()
 async def JahnaviGadde(ctx):
-    await ctx.send("Hello ! I am Jahnavi, This is my first bot command !!!")   
-   
+    await ctx.send("Hello ! I am Jahnavi, This is my first bot command !!!")
+
 start()
 # token will be provided with the every claimed issue
 # Now add the token in a .env file named TOKEN and it will run automatically

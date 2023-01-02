@@ -250,20 +250,6 @@ async def RibhavBansal(ctx):
 async def Koshal7(ctx):
     await ctx.send("London Me Taxi Chalaega?")
 
-movie_api_key = "ec63f0a6b27d6c92073d8a63ffbc8ec5"
-
-@bot.command()
-async def movie(ctx,* ,mystr):
-    movie_name = mystr.replace(" ","+")
-    movie_response = requests.get(f'https://api.themoviedb.org/3/search/movie?api_key={movie_api_key}&query={movie_name}')
-    title = movie_response.json()['results'][0]['original_title']
-    overview = movie_response.json()['results'][0]['overview']
-    rating = movie_response.json()['results'][0]['vote_average']
-    emb=discord.Embed(title=title, description=overview)
-    emb.set_footer(text=f'Rating : {rating}')
-    await ctx.send(embed = emb)
-
-
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
 
 

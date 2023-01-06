@@ -275,6 +275,15 @@ async def movie(ctx,* ,mystr):
     await ctx.send(embed = emb)
 
 
+@bot.command()
+async def quote(ctx):
+    random_quote = requests.get("https://zenquotes.io/api/random")
+    quo = random_quote.json()[0]['q']
+    aut = random_quote.json()[0]['a']
+    em = discord.Embed(title="Random Quote", description=quo)
+    em.set_footer(text=f'Author : {aut}')
+    await ctx.send(embed = em)
+
 # Discord ID: MistyRavager#2412 Github ID: MistyRavager
 
 

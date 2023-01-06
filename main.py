@@ -209,6 +209,15 @@ async def aasthaaaa7(ctx):
 
     await ctx.send(embed=embed)
 
+ # Discord: Buzzinga#2392 GitHub:SanyamAgrawal07
+
+@ bot.command()
+async def heheboi(ctx):
+    embed = discord.Embed()
+    embed.set_image(
+        url="https://media.giphy.com/media/dPEJxh06y4OTC/giphy.gif")
+
+    await ctx.send(embed=embed)
 
 # Discord & Github Name: frikinomad
 
@@ -254,7 +263,7 @@ async def akshatsgh(ctx):
 async def RibhavBansal(ctx):
     await ctx.send("Hey, I am Ribhav, I like to develop my skills")
 
- 
+
  #Github : Koshal7      Discord : Sick Duck#8496
 
 @bot.command()

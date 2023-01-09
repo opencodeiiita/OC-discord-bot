@@ -24,7 +24,7 @@ async def chat(ctx, *args):
 
     prompt = " ".join(args)
     response = openai.Completion.create(
-        engine='text-davinci-003', prompt=prompt, max_tokens=100)
+        engine='text-davinci-003', prompt=prompt, max_tokens=1000)
     await ctx.send(response.choices[0].text)
 
 

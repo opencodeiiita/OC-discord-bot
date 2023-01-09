@@ -6,8 +6,10 @@ from dotenv import load_dotenv
 import os
 import requests
 import random
+import openai
 
 load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -15,6 +17,15 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='-', intents=intents)
 
 separators = [":", "-", "="]
+
+
+@bot.command()
+async def chat(ctx, *args):
+
+    prompt = " ".join(args)
+    response = openai.Completion.create(
+        engine='text-davinci-003', prompt=prompt, max_tokens=100)
+    await ctx.send(response.choices[0].text)
 
 
 @bot.event
@@ -181,7 +192,7 @@ async def tags(ctx):
     with open(f'./tags/{serverId}.json', 'r') as file:
         data = json.load(file)
     index = 1
-    for key,value in data.items():
+    for key, value in data.items():
         tagsString += f'{index}. {key+chr(10)}'
         index += 1
     embed.add_field(name="The tags made in this server are given below:",
@@ -243,8 +254,8 @@ async def akshatsgh(ctx):
 async def RibhavBansal(ctx):
     await ctx.send("Hey, I am Ribhav, I like to develop my skills")
 
- 
- #Github : Koshal7      Discord : Sick Duck#8496
+ # Github : Koshal7      Discord : Sick Duck#8496
+
 
 @bot.command()
 async def Koshal7(ctx):
